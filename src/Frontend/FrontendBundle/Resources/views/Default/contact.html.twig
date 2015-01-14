@@ -1,0 +1,79 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+    {% stylesheets 
+            "@FrontendBundle/Resources/public/css/sevenslider.css"
+            "@FrontendBundle/Resources/public/css/skins/default.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+            "@FrontendBundle/Resources/public/js/jquery.seven.js"
+            "@FrontendBundle/Resources/public/js/jquery.reference.js"
+            "@FrontendBundle/Resources/public/js/order_application.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 col-lg-9"><br>
+        <h3>Możesz się z nami skontaktować:</h3><br/>
+        - telefonicznie: <strong>515-972-624</strong> <br/>
+        - za pomocą poczty email: <strong>sklep@dobrapsychoterapia.net</strong><br/>
+        - lub tradycyjnym listem: <strong>Ul. Beniowskiego 66/8, 80-382 Gdańsk</strong><br/>
+        <br/>
+
+        <h3>Możesz też zostawić nam wiadomość:</h3><br/>
+        {{ form_start(form, { method: 'POST', attr:{ class: 'sky-form' } }) }}
+            <fieldset>					
+                <div class="row">
+                    <section class="col col-6">
+                        {{ form_row(form.name, { label: false, attr: { placeholder: "Imię i nazwisko", 'style': 'padding: 6px 12px' } }) }}
+                    </section>
+                    <section class="col col-6">
+                        {{ form_row(form.email, { label: false, attr: { placeholder: "E-mail", 'style': 'padding: 6px 12px' } }) }}
+                    </section>
+                </div>
+                <section>
+                    {{ form_row(form.subject, { label: false, attr: { placeholder: "Temat wiadomości", 'style': 'padding: 6px 12px' } }) }}
+                </section>
+                <section>
+                    {{ form_row(form.message, { label: false, attr: { placeholder: "Treść wiadomości", 'style': 'padding: 6px 12px' } }) }}
+                </section>
+                <section>
+                    {{ form_errors(form.copy) }}
+                    {{ form_label(form.copy) }}
+                    {{ form_widget(form.copy) }}
+
+                </section>
+            </fieldset>
+            <footer>
+                {{ form_row(form.submit, { attr: { class: 'button' }, label: "Wyślij wiadomość" }) }}
+            </footer>
+        {{ form_end(form) }}
+    </div>
+    <div id="pasekprawy" class="col-sm-3 hidden-sm hidden-xs hidden-md">
+        <div class="row">
+            <div class="seven_container col-xs-12">
+                <div id="seven_viewport" class="seven_viewport">
+                    <div class="seven_slider">
+                        {% image '@FrontendBundle/Resources/public/images/1.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                        
+                        {% image '@FrontendBundle/Resources/public/images/2.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                    
+                    </div>
+                </div>
+                <a id="left_btn" class="seven_nav">Previous Slide</a>
+                <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+            </div>
+        </div>
+    </div>	
+</div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

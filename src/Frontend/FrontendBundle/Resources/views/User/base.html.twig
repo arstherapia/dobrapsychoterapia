@@ -1,0 +1,28 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block content %}	
+    <div class="section_header">
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <h3>Profil użytkownika</h3>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="{{ path('frontend.user.index') }}" class="list-group-item{{ (app.request.get("_route") == 'frontend.user.index')?' active':"" }}">
+                    Strona główna profilu
+                </a>
+                <a href="{{ path('frontend.user.details') }}" class="list-group-item{{ (app.request.get("_route") == 'frontend.user.details')?' active':"" }}">Moje dane</a>
+                <a href="{{ path('frontend.user.orders') }}" class="list-group-item{{ (app.request.get("_route") == 'frontend.user.orders')?' active':"" }}">Moje zamówienia</a>
+                <a href="{{ path('mes_logout') }}" class="list-group-item">Wyloguj</a>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            {% block container %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

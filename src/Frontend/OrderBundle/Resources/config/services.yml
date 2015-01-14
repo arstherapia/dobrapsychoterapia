@@ -1,0 +1,11 @@
+services:
+    instant_mailer:
+        class: %swiftmailer.class%
+        arguments: ["@?swiftmailer.transport.real"] 
+    mail_manager:
+        class: Frontend\OrderBundle\Services\Mailer
+        arguments: [ @doctrine.orm.entity_manager,  @instant_mailer, @twig ]
+    order_manager:
+        class: Frontend\OrderBundle\Services\OrderManager
+        arguments: [ @doctrine.orm.entity_manager,  @security.context ]
+       

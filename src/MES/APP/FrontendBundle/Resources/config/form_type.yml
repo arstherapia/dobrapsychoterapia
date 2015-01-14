@@ -1,0 +1,31 @@
+parameters:
+    _upload.type.document_upload_type.class: MES\APP\FrontendBundle\Form\Type\DocumentType
+    _upload.type.product_image_upload_type.class: MES\APP\FrontendBundle\Form\Type\TherapistImageType 
+    _upload.type.therapist_image_upload.class: MES\APP\FrontendBundle\Form\Type\TherapistImageFileType 
+    _upload.type.movie_upload.class: ES\APP\FrontendBundle\Form\Type\MoviesType
+        
+services:
+        # upload file type usable in forms
+    _upload.type.image_upload_type:
+        class:        "%_upload.type.file_upload_type.class%"
+        arguments:    ["@doctrine.orm.entity_manager", "@session"]
+        tags:
+            - { name: "form.type", alias: "image_upload" }
+
+    _upload.type.product_image_upload_type:
+        class:        "%_upload.type.product_image_upload_type.class%"
+        arguments:    ["@doctrine.orm.entity_manager", "@session"]
+        tags:
+            - { name: "form.type", alias: "product_image_upload" } 
+            
+    _upload.type.therapist_image_upload:
+        class:        "%_upload.type.therapist_image_upload.class%"
+        arguments:    ["@doctrine.orm.entity_manager", "@session"]
+        tags:
+            - { name: "form.type", alias: "therapist_image_upload" } 
+            
+    _upload.type.product_movie_upload:
+        class:        "%_upload.type.movie_upload.class%"
+        arguments:    ["@doctrine.orm.entity_manager", "@session"]
+        tags:
+            - { name: "form.type", alias: "product_movie_upload" }

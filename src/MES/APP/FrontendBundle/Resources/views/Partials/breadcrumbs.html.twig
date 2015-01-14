@@ -1,0 +1,11 @@
+{% for breadcrumb in breadcrumbs %}
+    <li class="{{ (loop.last)?'active':'' }}">
+        {% if not loop.last %}
+            <a href="{{ path(breadcrumb.path) }}">
+                {{ breadcrumb.content }}
+            </a>
+        {% else %}
+        {{ breadcrumb.content }}
+        {% endif %}
+    </li>
+{% endfor %}

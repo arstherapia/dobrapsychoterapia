@@ -1,0 +1,68 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+    {% stylesheets 
+            "@FrontendBundle/Resources/public/css/sevenslider.css"
+            "@FrontendBundle/Resources/public/css/skins/default.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+            "@FrontendBundle/Resources/public/js/jquery.seven.js"
+            "@FrontendBundle/Resources/public/js/jquery.reference.js"
+            "@FrontendBundle/Resources/public/js/order_application.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-9"><br>
+        <h3>Nasze filmy</h3><hr/>
+        <p><strong>Dla wykładowcy</strong>, filmy o psychoterapii stanowią wspaniałe źródło
+            inspiracji dydaktycznej. Są niezwykłym ułatwieniem dla osoby 
+            prowadzącej zajęcia, gdyż oferują nie tylko pasjonującą treść, 
+            ale zawierają również gotowy podręcznik szkoleniowy zawierający 
+            przykładowe warsztaty, które można poprowadzić w oparciu o kanwę 
+            filmu. Podręcznik ten zawiera też pytania do dyskusji poszerzające 
+            rozumienie materiału filmowego oraz przykładowe testy.</br></br>
+            Wyznacza to nowy standard w nauczaniu psychologii i psychoterapii.</p><hr/>
+        <p><strong>Dla instytucji</strong> zajmujących się pomaganiem drugiemu człowiekowi, 
+            filmy szkoleniowe stanowią najtańszy sposób podnoszenia 
+            kwalifikacji pracujących w nich specjalistów, dostarczając im 
+            aktualnej wiedzy. Otwierają również możliwości prowadzenia 
+            multimedialnych szkoleń dla pracowników innych placówek lub też 
+            dla swoich klientów i podopiecznych.</br></br>
+            Zapraszamy do zapoznawania się z naszą ofertą pakietów dla instytucji.</p><hr/>
+        <p><strong>Dla studentów</strong> jest to rzadka okazja zobaczenia wielkich postaci 
+            podczas pracy, zamiast poznawania ich wyłącznie za pomocą 
+            ograniczonego w przekazie medium, jakim jest słowo pisane.</br></br> 
+            Wykorzystanie filmu jako pomocy edukacyjnej zaangażuje studentów 
+            w żywe, pełne emocji dyskusje na poruszane tematy.</br></br>
+            Dla wszystkich studentów psychologii oferujemy atrakcyjne zniżki!
+        </p><br><br>
+    </div>
+    <div id="pasekprawy" class="col-sm-3 hidden-sm hidden-xs hidden-md">
+        <div class="row">
+            <div class="seven_container col-xs-12">
+                <div id="seven_viewport" class="seven_viewport">
+                    <div class="seven_slider">
+                        {% image '@FrontendBundle/Resources/public/images/1.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                        
+                        {% image '@FrontendBundle/Resources/public/images/2.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                    
+                    </div>
+                </div>
+                <a id="left_btn" class="seven_nav">Previous Slide</a>
+                <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+            </div>
+        </div>
+    </div>	
+</div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

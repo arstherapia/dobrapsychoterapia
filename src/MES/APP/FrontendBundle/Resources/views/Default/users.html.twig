@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+{% block pageName %}Lista <small>użytkowników</small>{% endblock %}
+{% block breadcrumbs %}
+    {{ 
+    render_breadcrumbs([
+        { content: 'Lista użytkowników'},
+    ]) 
+    }}
+{% endblock %}
+{% block content -%}
+
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>E-Mail</th>
+                <th>Data rejestracji</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td><a href="{{ path('mes_useredit', { id: user.id }) }}">{{ user.id }}</a></td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.surname }}</td>
+                    <td>{{ user.email}}</td>
+                    <td>{{ user.dateCreated|date('Y-m-d H:i:s') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

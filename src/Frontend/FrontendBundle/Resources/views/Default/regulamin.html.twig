@@ -1,0 +1,67 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+    {% stylesheets 
+            "@FrontendBundle/Resources/public/css/sevenslider.css"
+            "@FrontendBundle/Resources/public/css/skins/default.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+            "@FrontendBundle/Resources/public/js/jquery.seven.js"
+            "@FrontendBundle/Resources/public/js/jquery.reference.js"
+            "@FrontendBundle/Resources/public/js/order_application.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-9">
+        <br><h3>Regulamin zakupów</h3><hr/>
+        <p>Sklep internetowy „Dobra Psychoterapia:, działający pod adresem www.dobrapsychoterapia.net, prowadzony jest przez firmę „Ars Therapia Sp. z o.o.” z siedzibą w Gdańsku przy ul. Beniowskiego 66/8; REGON: 221222749, NIP: 5862268074, KRS 0000385687.<br><br>
+1. Sklep prowadzi sprzedaż materiałów audiowizualnych za pośrednictwem sieci Internet.<br><br>
+2. Zamówienia są przyjmowane przez stronę www.dobrapsychoterapia.net, drogą mailową lub telefonicznie. Po złożeniu zamówienia klient otrzymuje wiadomość e-mail, informującą o przyjęciu zamówienia.<br><br>
+3. Zamówienie zostanie zrealizowane pod warunkiem, że materiały audiowizualne są dostępne w magazynie lub u wydawcy. W razie jakichkolwiek problemów, klient zostanie powiadomiony o stanie zamówienia i podejmie decyzję o częściowej realizacji zamówienia, wydłużeniu czasu oczekiwania lub też o anulowaniu zamówienia.<br><br>
+4. Do każdego zamówienia wystawiana jest paragon lub faktura.<br><br>
+5. Klient może anulować całe zamówienie do momentu rozpoczęcia realizacji zamówienia. Zmiany w zamówieniu rozpatrywane są indywidualnie. W tej sprawie proszę kontaktować się za pomocą poczty e-mail.<br><br>
+6. Przy każdym towarze podany jest czas realizacji zamówienia. Jest to czas, który upływa od złożenia zamówienia do wysyłki towaru. Zamówienie o różnych terminach realizacji wysyłane jest po skompletowaniu całości i obowiązuje tutaj najdłuższy z czasów realizacji.<br><br>
+7. Koszty wysyłki ponosi Klient dla zamówienia nie przekraczającego 200 zł. Powyżej tej kwoty koszty wysyłki ponosi Ars Therapia. Darmowa wysyłka obejmuje teren Polski.  Koszt wysyłki za granice kraju podlegają indywidualnym ustaleniom z Klientem.<br><br>
+8. W przypadku odkrycia wad technicznych towaru, takich jak puste strony, lub wada nośnika w przypadku materiałów audiowizualnych, proszę odesłać towar na adres sklepu „Ars Therapia, ul. Beniowskiego 66/8, Gdańsk 80-382” i przesłać opis znalezionych wad za pomocą poczty e-mail. Reklamacje będą rozpatrywane w ciągu 7 dni od otrzymania przesyłki i informacji. W razie pozytywnego rozpatrzenia otrzymają Państwo nowy egzemplarz towaru albo – w razie jego braku w magazynie lub u wydawcy – zwrot gotówki. Jeśli film podlegający reklamacji stanowić będzie część pakietu promocyjnego, zwrócona zostanie równowartość filmu obliczona wg wzoru [ Równowartość = Cena / Ilość filmów w pakiecie. ] W przypadku nie otrzymania przesyłki prosimy o wysłanie listu z reklamacją
+na adres firmy, tj. Beniowskiego 66/8, Gdańsk Oliwa. Reklamacja zostanie rozpatrzona w trybie pilnym w ciągu 3 dni roboczych.<br><br>
+9. W związku z łatwą możliwością powielenia materiałów audiowizualnych, takich jak filmy, zakupy dokonane w za pośrednictwem naszego portalu nie podlegają prawu zwrotu.<br><br>
+10. Złożenie zamówienia oznacza akceptację regulaminu zakupów.<br><br>
+11. Klient wyraża zgodę na przetwarzanie danych osobowych dla potrzeb zawarcia i realizacji umowy w ramach sklepu internetowego. Dane, które Państwo powierzają firmie Ars Therapia, są wykorzystywane wyłącznie w celu realizacji umowy – tj. wysłania zamówienia, oraz, jeśli wyrazicie Państwo na to zgodę, w celu przekazywania informacji o możliwych rabatach, nowościach i wyprzedażach. Państwa adres e-mail lub telefon jest nam potrzebny do ewentualnego kontaktu w przypadku nietypowego procesu realizacji zamówienia (np. braku jednego z tytułów lub konieczności wydłużenia czasu realizacji o dzień lub dwa). Żadnych z Państwa danych nie udostępniamy innym firmom lub osobom. Każdy Klient ma prawo dostępu do swoich danych oraz ich poprawiania, a także do zaprzestania ich przetwarzania przez firmę „Ars Therapia”. W innych kwestiach dotyczących ochrony danych osobowych, w tym zapewnienia bezpieczeństwa przechowywania Państwa danych, nasze działanie zgodne jest z treścią: ustawy z dnia 29.08.1997 r. o ochronie danych osobowych (tekst jednolity Dz. U. Nr 101 z 2002 r. poz. 926, z późn. zm.), ustawy z dnia 18.07.2002 r. o świadczeniu usług drogą elektroniczną (Dz. U. Nr 144, poz. 1204 z poźn. zm.) oraz rozporządzenia z dnia 29.0.2004 r. Ministra Spraw Wewnętrznych i Administracji w sprawie dokumentacji przetwarzania danych osobowych oraz warunków technicznych i organizacyjnych, jakim powinny odpowiadać urządzenia i systemy informatyczne, służące do przetwarzania danych osobowych (Dz. U. Nr 100, poz.1024).
+
+
+        </p>
+
+        
+
+        <p>Zaprasamy serdecznie do przeglądania zasobów naszego sklepu.</p><br><br>
+
+    </div>
+    <div id="pasekprawy" class="col-sm-3 hidden-sm hidden-xs hidden-md">
+        <div class="row">
+            <div class="seven_container col-xs-12">
+                <div id="seven_viewport" class="seven_viewport">
+                    <div class="seven_slider">
+                        {% image '@FrontendBundle/Resources/public/images/1.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                        
+                        {% image '@FrontendBundle/Resources/public/images/2.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                    
+                    </div>
+                </div>
+                <a id="left_btn" class="seven_nav">Previous Slide</a>
+                <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+            </div>
+        </div>
+    </div>		
+</div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

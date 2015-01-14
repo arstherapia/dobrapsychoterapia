@@ -1,0 +1,39 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block content %}	
+    <div style="margin-top:20px;"></div>
+    
+    <div class="row">
+        <div class="col-md-12"
+           <p><center> 
+           <h5 style="color: #6d9fad;">Witamy serdecznie. 
+           Zapraszamy do przejrzenia naszej oferty<strong> 154</strong> filmów.</h5></center></p>
+            <hr/>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5">
+            <br/>
+            <p>
+                <strong>Szanowni Państwo,</strong>
+            </p>
+            <p>
+                Nauka psychoterapii jest trudnym i wieloletnim procesem, stawiającym przed terapeutą wiele wyzwań intelektualnych <br>i emocjonalnych. 
+                Proces ten w zasadzie nie podlega końcowi - uczymy się przez całe życie, każdy pacjent poszerza nasze rozumienie funkcjonowania psychiki.  
+            </p>
+            <p>
+                Jak skutecznie pomagać? 
+                Sposobów pracy, jak i nauki jest wiele. <br><br>My zapraszamy Państwa do kształcenia się z wykorzystaniem naszych filmów edukacyjnych, które posiadają tą zaletę nad książkami, że ukazują niuanse niemożliwe do przekazania tylko słowem pisanym: ton głosu, mowę ciała, sposób budowania więzi i dynamikę relacji.
+            </p>	
+            <p>
+                Zaprasamy serdecznie do zapoznania się naszymi zasobami, <br/><br/>
+                <strong>Zespół "Dobrej Psychoterapii" </strong>
+            </p>	
+        </div>
+        <div class="col-md-7">
+            {% image '@FrontendBundle/Resources/public/images/banner.jpg' %}
+            <img src="{{ asset_url }}" alt="..." style="width: 100%" class="bannermainpage">
+            {% endimage %}
+        </div>
+    </div>
+{% endblock %}

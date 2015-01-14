@@ -1,0 +1,8 @@
+Witaj {{ order.name ~ ' ' ~ order.surname }}!<br/>
+<br/>
+Status Twojego zamówienia uległ zmianie, nowy status: <strong>{{ order.orderState.name }}</strong>
+<br/>
+<br/>
+{% if order.shipingNumber %}
+    Numer listu przewozowego: <strong>{{ order.shipingNumber }}</strong>
+{% endif %}

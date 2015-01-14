@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+{% block pageName %}Lista <small>terapeutów</small>{% endblock %}
+{% block breadcrumbs %}
+    {{ 
+    render_breadcrumbs([
+        { content: 'Lista terapeutów'},
+    ]) 
+    }}
+{% endblock %}
+{% block content -%}
+
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Bio</th>
+                <th>Picture</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('therapist_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.bio }}</td>
+                    <td><img src="{{ asset(entity.picture) }}" alt="cover"/></td>
+                    <td>
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="{{ path('therapist_show', { 'id': entity.id }) }}">Podgląd</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('therapist_edit', { 'id': entity.id }) }}">Edycja</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('therapist_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endblock %}

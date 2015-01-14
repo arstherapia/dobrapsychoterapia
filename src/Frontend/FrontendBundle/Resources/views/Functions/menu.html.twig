@@ -1,0 +1,45 @@
+<!--Menu -->	
+<div class="row">
+    <div class="col-md-12">
+        <ul class="sky-mega-menu sky-mega-menu-anim-scale sky-mega-menu-response-to-icons">				
+            <!-- about -->
+            <li>
+                <a href="{{ path('frontend.default.index') }}"><i class="fa fa-home"></i>Strona główna</a>
+            </li>
+
+            <li aria-haspopup="true">
+                <a href="javascript:void(0)"><i class="fa fa-smile-o"></i>O nas</a>
+                <div class="grid-container3">
+                    <ul>
+                        <li><a href="{{ path('frontend.default.about') }}"><i class="fa fa-smile-o"></i>O firmie</a></li>
+                        <li><a href="{{ path('frontend.default.our_movies') }}"><i class="fa fa-lemon-o"></i>Nasze filmy</a></li>
+                        <li><a href="{{ path('frontend.default.order_creation') }}"><i class="fa fa-globe"></i>Składanie zamówień</a></li>
+                        <li><a href="{{ path('frontend.default.shiping') }}"><i class="fa fa-th-large"></i>Wysyłka i płatności</a></li>
+                        <li><a href="{{ path('frontend.default.contact') }}"><i class="fa fa-picture-o"></i>Dane kontaktowe</a></li>
+                    </ul>
+                </div>
+            </li>	
+
+            <li>
+                <a href="{{ path('frontend.therapist.index') }}"></i>Filmy wg terapeuty</a>
+            </li>
+            <li>
+                <a href="{{ path('frontend.catagories.index') }}"></i>Filmy wg kategorii</a>
+            </li>
+            <li>
+                <a href="{{ path('frontend.problems.index') }}">Filmy wg problemu</a>
+            </li>
+            <li>
+                <a href="{{ path('frontend.default.news') }}"><i class="fa fa-edit"></i>Aktualności</a>
+            </li>
+            <li class="right search">					
+                <form action="{{ path('frontend.search.index') }}">     
+                    <div class="input">
+                        <button type="submit" class="button">Szukaj</button>
+                        <input type="text" name="query" placeholder="Szukaj">
+                    </div>     
+                </form>
+            </li>
+        </ul>
+    </div> 
+</div>

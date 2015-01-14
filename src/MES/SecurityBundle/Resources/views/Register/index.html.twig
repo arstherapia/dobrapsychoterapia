@@ -1,0 +1,17 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block content %}	
+    <br/>
+    <h3>Rejestracja nowego użytkownika</h3>
+    <hr/>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well">
+                {% if form is defined %}
+                {{ form(form, {method:'POST', action:path('mes_register_post'), 'style': 'horizontal', 'label_col': 4, 'widget_col': 8 }) }}
+                {% else %}
+                    Rejestracja zakończona sukcesem, możesz się zalogować.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

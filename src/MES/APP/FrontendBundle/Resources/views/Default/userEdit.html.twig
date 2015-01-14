@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+{% block pageName %}Lista <small>użytkowników</small>{% endblock %}
+{% block breadcrumbs %}
+    {{ 
+    render_breadcrumbs([
+        { content: 'Lista użytkowników', path: 'mes_users' },
+        { content: 'Edycja użytkownika'},
+    ]) 
+    }}
+{% endblock %}
+{% block content -%}
+    Dane Profilowe:
+    {{ form(formDetails, {method:'POST', action:null, 'style': 'horizontal', 'label_col': 3, 'widget_col': 9 }) }}
+    <hr/>
+    
+    Dane Firmy (nie wymagane):
+    {{ form(formCompany, {method:'POST', action:null, 'style': 'horizontal', 'label_col': 3, 'widget_col': 9 }) }}
+{% endblock %}
+

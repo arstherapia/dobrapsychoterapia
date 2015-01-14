@@ -1,0 +1,26 @@
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    
+oneup_uploader:
+    resource: .
+    type: uploader
+    
+order:
+    resource: "@OrderBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+frontend:
+    resource: "@FrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+mesapp_frontend:
+    resource: "@MESAPPFrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+mes_security:
+    resource: "@MESSecurityBundle/Controller/"
+    type:     annotation
+    prefix:   /security

@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+{% block pageName %}Lista <small>zamówień</small>{% endblock %}
+{% block breadcrumbs %}
+    {{ 
+    render_breadcrumbs([
+        { content: 'Lista zamówień'},
+    ]) 
+    }}
+{% endblock %}
+{% block content -%}
+
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Ilość pozycji</th>
+                <th>Data</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in orders %}
+                <tr>
+                    <td><a href="{{ path('orders.order', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.surname }}</td>
+                    <td>{{ entity.orderProducts|length }}</td>
+                    <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ entity.orderState.name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

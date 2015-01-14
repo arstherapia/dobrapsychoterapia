@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+{% block pageName %}Nowy <small>problem</small>{% endblock %}
+{% block breadcrumbs %}
+    {{ 
+    render_breadcrumbs([
+        { content: "Lista problemów", path: "problem" },
+        { content: 'Nowy problem'},
+    ]) 
+    }}
+{% endblock %}
+{% block content -%}
+    {{ form(form, { 'style': 'horizontal', 'label_col': 2, 'widget_col': 10 }) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('problem') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

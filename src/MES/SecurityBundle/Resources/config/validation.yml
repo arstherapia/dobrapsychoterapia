@@ -1,0 +1,98 @@
+MES\UserBundle\Entity\MesUser:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: email
+            message: 'Ten adres e-mail jest w użyciu'
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: username
+            message: 'Ta nazwa użytkownika jest w użyciu'
+    properties:
+        email:
+            - Email: 
+                message: 'Proszę podać poprawny adres e-mail' 
+        password:
+            - Length:
+                min: 6
+                max: 16
+                minMessage: "Hasło musi mieć minimum {{ limit }} znaków"
+                maxMessage: "Hasło nie może mieć więcej jak {{ limit }} znaków"
+                
+Frontend\FrontendBundle\Entity\Newsletter:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: email
+            message: 'Ten adres e-mail jest już zapisany'
+    properties:
+        email:
+            - Email: 
+                message: 'Proszę podać poprawny adres e-mail'
+                
+Frontend\FrontendBundle\Entity\Contact:
+    properties:
+        email:
+            - Email: 
+                message: 'Proszę podać poprawny adres e-mail'
+        subject:
+            - Length:
+                min: 5
+                max: 128
+                minMessage: "Temat musi mieć minimum {{ limit }} znaków"
+                maxMessage: "Temat nie może mieć więcej jak {{ limit }} znaków"  
+        message:
+            - Length:
+                min: 5
+                max: 4096
+                minMessage: "Wiadomość musi mieć minimum {{ limit }} znaków"
+                maxMessage: "Wiadomość nie może mieć więcej jak {{ limit }} znaków" 
+                
+MES\UserBundle\Entity\MesProfile:
+    properties:
+        name:
+            - Length:
+                min: 3
+                max: 25
+                minMessage: "Imię musi mieć minimum {{ limit }} znaki"
+                maxMessage: "Imię nie może mieć więcej jak {{ limit }} znaków"
+        surname:
+            - Length:
+                min: 2
+                max: 25
+                minMessage: "Nazwisko musi mieć minimum {{ limit }} znaki"
+                maxMessage: "Nazwisko nie może mieć więcej jak {{ limit }} znaków"
+        street:
+            - Length:
+                min: 2
+                max: 25
+                minMessage: "Ulica musi mieć minimum {{ limit }} znaki"
+                maxMessage: "Ulica nie może mieć więcej jak {{ limit }} znaków"
+#        buildingNumber:
+#            - Type:
+#                type: string
+#            - NotBlank: ~
+#            - Range:
+#                min: 1
+#                max: 999
+#                minMessage: "Numer budynku musi mieć minimum {{ limit }} znak"
+#                maxMessage: "Numer budynku nie może mieć więcej jak {{ limit }} znaków"
+        postalCode:
+            - Length:
+                min: 6
+                max: 6
+                exactMessage: 'Kod pocztowy musi mieć dokładnie {{ limit }} znaków, w formacie XX-YYY'
+                minMessage: "Kod pocztowy musi mieć minimum {{ limit }} znaków"
+                maxMessage: "Kod pocztowy nie może mieć więcej jak {{ limit }} znaków"
+        city:
+            - Length:
+                min: 2
+                max: 40
+                minMessage: "Miejscowość musi mieć minimum {{ limit }} znaki"
+                maxMessage: "Miejscowość nie może mieć więcej jak {{ limit }} znaków"
+        telephone:
+            - Type:
+                type: numeric
+                message: Podana wartość {{ value }} nie jest numerem.
+            - Length:
+                min: 9
+                max: 12
+                minMessage: "Telefon musi mieć minimum {{ limit }} znaków"
+                maxMessage: "Telefon nie może mieć więcej jak {{ limit }} znaków"

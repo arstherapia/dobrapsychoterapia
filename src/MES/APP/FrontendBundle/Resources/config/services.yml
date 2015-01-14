@@ -1,0 +1,114 @@
+imports:
+    - { resource: form_type.yml }
+    - { resource: upload_file_type.yml }
+
+parameters:
+    _upload.namespace: MES\APP\FrontendBundle\Service\Upload\
+    
+    _upload.upload.class: "%_upload.namespace%UploadService"
+    _upload.upload_types_collection.class: "%_upload.namespace%UploadTypesCollection"
+    _upload.file_types_collection.class: "%_upload.namespace%FileTypesCollection"
+    _upload.adapters_collection.class: "%_upload.namespace%AdaptersCollection"
+    _upload.adapter.temp.class: "%_upload.namespace%Adapters\TempAdapter"
+    _upload.adapter.user_profile.class: "%_upload.namespace%Adapters\\UserProfileAdapter"
+    _upload.file_upload_listener.class: MES\APP\FrontendBundle\EventListener\FileUploadListener   
+    _upload.type.file_upload_type.class: MES\APP\FrontendBundle\Form\Type\ImageUploadType
+    _upload.type.profile_file_type.class: MES\APP\FrontendBundle\Form\Type\ProfileFileType
+    _upload.gaufrette.local_tree_adapter: MES\APP\FrontendBundle\Gaufrette\LocalTreeAdapter
+    _upload.oneup_uploader.namer.md5uniqid.class: MES\APP\FrontendBundle\Oneup\Md5UniqidNamer
+    _upload.session_uploaded_files_provider.class: MES\APP\FrontendBundle\Service\SessionUploadedFilesProvider
+    _upload.twig.namer.upload_extension.class: MES\APP\FrontendBundle\Twig\UploadExtension
+    _upload.upload_namer.class: "%_upload.namespace%UploadFileNamer"
+    admin_menu_renderer.class:        MES\APP\FrontendBundle\Twig\Extension\MenuTwig
+    breadcrumbs_renderer.class: MES\APP\FrontendBundle\Twig\Extension\BreadcrumbsTwig
+    route_filter.class:         MES\APP\FrontendBundle\Twig\Extension\IsActiveTwig
+    
+services:
+    # oneup uploader endpoint listener
+    _upload.file_upload_listener:
+        class:        "%_upload.file_upload_listener.class%"
+        arguments:    ["@upload", "@upload.namer"]
+        tags:
+            - { name: "kernel.event_listener", event: "oneup_uploader.post_persist", method: "onUpload" }
+      
+    _upload.type_extension.form_cleanup_event:
+        class:        MES\APP\FrontendBundle\Form\TypeExtension\CleanupEventTypeExtension
+        arguments:    []
+        tags:
+            - { name: "form.type_extension", alias: "form" }
+            
+    _upload.session_uploaded_files_provider:
+        class:        "%_upload.session_uploaded_files_provider.class%"
+        arguments:    ["@session"]
+        
+    _upload.type.profile_file_type:
+        class:        "%_upload.type.profile_file_type.class%"
+        arguments:    ["@doctrine"]
+        tags:
+            - { name: "form.type", alias: "profile_file" }
+            
+    _upload.gaufrette.local_tree_adapter:
+        class:        "%_upload.gaufrette.local_tree_adapter%"
+        arguments:    ["%kernel.root_dir%/../web/uploads/", true]
+            
+    oneup_uploader.namer.md5uniqid:
+        class:        "%_upload.oneup_uploader.namer.md5uniqid.class%"
+        arguments:    [@upload.namer]
+            
+    upload.namer:
+        class:        "%_upload.upload_namer.class%"
+        arguments:    ["%kernel.root_dir%/../web/uploads/"]
+        
+    _upload.twig.upload_extension:
+        class:        "%_upload.twig.namer.upload_extension.class%"
+        arguments:    [@liip_imagine.cache.manager]
+        tags:
+            - { name: twig.extension }
+            
+            
+    upload:
+        class:        "%_upload.upload.class%"
+        arguments:
+            - @upload.adapters_collection
+            - @upload.file_types_collection
+            - @upload.upload_types_collection
+            - @upload.namer
+            
+    upload.upload_types_collection:
+        class:        "%_upload.upload_types_collection.class%"
+            
+    upload.file_types_collection:
+        class:        "%_upload.file_types_collection.class%"
+            
+    upload.adapters_collection:
+        class:        "%_upload.adapters_collection.class%"
+            
+    upload.adapter.temp:
+        class:        "%_upload.adapter.temp.class%"
+        arguments:    [@doctrine.orm.entity_manager, @security.context, @session]
+        tags:
+            - { name: "upload.adapter", alias: "temp" }
+            
+    upload.adapter.user_profile:
+        class:        "%_upload.adapter.user_profile.class%"
+        arguments:    [@doctrine.orm.entity_manager, @security.context, @session]
+        tags:
+            - { name: "upload.adapter", alias: "user_profile" } 
+            
+    admin_menu_renderer:
+        class: %admin_menu_renderer.class%
+        arguments: ['@security.context', '@twig']
+        tags:
+            - { name: twig.extension }
+            
+    breadcrumbs_renderer:
+        class: %breadcrumbs_renderer.class%
+        arguments: ['@twig']
+        tags:
+            - { name: twig.extension }
+    
+    route_filter:
+        class: %route_filter.class%
+        arguments: ['@request_stack']
+        tags:
+            - { name: twig.extension }

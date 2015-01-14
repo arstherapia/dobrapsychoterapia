@@ -1,0 +1,23 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block content %}	
+    <br/>
+    <h3>Logowanie do serwisu</h3>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="well">
+                {{ form_start(form, {method:'POST', action:path('mes_login_check'), 'style': 'horizontal', 'label_col': 4, 'widget_col': 8 }) }}
+                {{ form_row(form.__username, { label: 'Nazwa użytkownika' }) }}
+                {{ form_row(form.__password, { label: 'Hasło' }) }}
+                {{ form_row(form.submit, { label: 'Zaloguj' }) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well">
+                <h4>Nie masz konta?</h4><br>
+                <a href="{{ path('mes_register') }}" class="btn btn-default">Zarejestruj się</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

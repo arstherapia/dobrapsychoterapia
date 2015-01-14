@@ -1,0 +1,327 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block title %}{{ product.title }} - {% endblock %}
+{% block seo_describtion %}{{ product.seoDescribtion }}{% endblock %}
+{% block seo_keywords %}{{ product.seoKeywords }}{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript">
+        var config = {
+            itemId: {{ product.id }},
+            individualPrice: {{ product.individualPrice }},
+            proffesionalPrice: {{ product.proffesionalPrice }}
+        };
+    </script>
+    {{ parent() }}
+    {% javascripts
+            "@OrderBundle/Resources/public/js/FWDUVPlayer.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+    {% if product.video|length > 10 %}
+    <script type="text/javascript">
+                FWDUVPUtils.onReady(function () {
+
+                FWDUVPlayer.useYoutube = "yes";
+                        new FWDUVPlayer({
+                        //main settings
+                        instanceName: "player1",
+                                parentId: "myDiv",
+                                playlistsId: "playlists",
+                                mainFolderPath: "content",
+                                skinPath: "../../../bundles/order/images/classic_skin_white",
+                                displayType: "responsive",
+                                facebookAppId: "213684265480896",
+                                useDeepLinking: "yes",
+                                rightClickContextMenu: "developer",
+                                addKeyboardSupport: "yes",
+                                autoScale: "yes",
+                                showButtonsToolTip: "yes",
+                                stopVideoWhenPlayComplete: "no",
+                                autoPlay: "no",
+                                loop: "no",
+                                shuffle: "no",
+                                maxWidth: 720,
+                                maxHeight: 480,
+                                volume: .8,
+                                buttonsToolTipHideDelay: 1.5,
+                                backgroundColor: "#FFFFFF",
+                                videoBackgroundColor: "#ebebeb",
+                                posterBackgroundColor: "#ebebeb",
+                                buttonsToolTipFontColor: "#494949",
+                                //logo settings
+                                showLogo: "no",
+                                hideLogoWithController: "yes",
+                                logoPosition: "topRight",
+                                logoLink: "http://www.webdesign-flash.ro/",
+                                logoMargins: 5,
+                                //playlists/categories settings
+                                showPlaylistsButtonAndPlaylists: "no",
+                                showPlaylistsByDefault: "no",
+                                thumbnailSelectedType: "opacity",
+                                startAtPlaylist: 0,
+                                buttonsMargins: 0,
+                                thumbnailMaxWidth: 350,
+                                thumbnailMaxHeight: 350,
+                                horizontalSpaceBetweenThumbnails: 40,
+                                verticalSpaceBetweenThumbnails: 40,
+                                //playlist settings
+                                showPlaylistButtonAndPlaylist: "no",
+                                playlistPosition: "right",
+                                showPlaylistByDefault: "no",
+                                showPlaylistName: "no",
+                                showSearchInput: "no",
+                                showLoopButton: "no",
+                                showShuffleButton: "no",
+                                showNextAndPrevButtons: "no",
+                                forceDisableDownloadButtonForFolder: "yes",
+                                addMouseWheelSupport: "no",
+                                startAtRandomVideo: "no",
+                                folderVideoLabel: "VIDEO ",
+                                playlistRightWidth: 310,
+                                playlistBottomHeight: 599,
+                                startAtVideo: 0,
+                                maxPlaylistItems: 50,
+                                thumbnailWidth: 70,
+                                thumbnailHeight: 70,
+                                spaceBetweenControllerAndPlaylist: 2,
+                                spaceBetweenThumbnails: 2,
+                                scrollbarOffestWidth: 10,
+                                scollbarSpeedSensitivity: .5,
+                                playlistBackgroundColor: "#000000",
+                                playlistNameColor: "#FFFFFF",
+                                thumbnailNormalBackgroundColor: "#1b1b1b",
+                                thumbnailHoverBackgroundColor: "#313131",
+                                thumbnailDisabledBackgroundColor: "#272727",
+                                searchInputBackgroundColor: "#000000",
+                                searchInputColor: "#bdbdbd",
+                                youtubeAndFolderVideoTitleColor: "#FFFFFF",
+                                youtubeOwnerColor: "#bdbdbd",
+                                youtubeDescriptionColor: "#bdbdbd",
+                                //controller settings
+                                showControllerWhenVideoIsStopped: "yes",
+                                showNextAndPrevButtonsInController: "no",
+                                showVolumeButton: "yes",
+                                showTime: "yes",
+                                showYoutubeQualityButton: "yes",
+                                showInfoButton: "yes",
+                                showDownloadButton: "yes",
+                                showFacebookButton: "yes",
+                                showEmbedButton: "yes",
+                                showFullScreenButton: "yes",
+                                repeatBackground: "no",
+                                controllerHeight: 37,
+                                controllerHideDelay: 3,
+                                startSpaceBetweenButtons: 10,
+                                spaceBetweenButtons: 10,
+                                scrubbersOffsetWidth: 2,
+                                mainScrubberOffestTop: 16,
+                                timeOffsetLeftWidth: 2,
+                                timeOffsetRightWidth: 3,
+                                timeOffsetTop: 0,
+                                volumeScrubberHeight: 80,
+                                volumeScrubberOfsetHeight: 12,
+                                timeColor: "#bdbdbd",
+                                youtubeQualityButtonNormalColor: "#bdbdbd",
+                                youtubeQualityButtonSelectedColor: "#FFFFFF",
+                                //embed window and info window
+                                embedAndInfoWindowCloseButtonMargins: 0,
+                                borderColor: "#333333",
+                                mainLabelsColor: "#FFFFFF",
+                                secondaryLabelsColor: "#bdbdbd",
+                                shareAndEmbedTextColor: "#5a5a5a",
+                                inputBackgroundColor: "#000000",
+                                inputColor: "#FFFFFF",
+                                //ads
+                                openNewPageAtTheEndOfTheAds: "no",
+                                adsButtonsPosition: "left",
+                                skipToVideoText: "You can skip to video in: ",
+                                skipToVideoButtonText: "Skip Ad",
+                                adsTextNormalColor: "#bdbdbd",
+                                adsTextSelectedColor: "#FFFFFF",
+                                adsBorderNormalColor: "#444444",
+                                adsBorderSelectedColor: "#FFFFFF"
+                        });
+                });
+
+    </script>
+{% endif %}
+{% endblock %}
+{% block content %}	
+    <div class="simpleCart_shelfItem" >
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>
+                    <strong class="item_name">{{ product.name }}</strong>
+                    <i class="hidden item_ids">{{ product.id }}</i>
+                    <br>
+                </h3><br>
+                <span style="font-size: 14px;line-height: 25px;">
+                    {{ product.descriptionShort | raw }}
+                </span>
+                <hr />
+                <!-- tabs -->
+                <div class="sky-tabs sky-tabs-pos-top-left sky-tabs-anim-fade sky-tabs-response-to-icons">                   
+
+                    <input type="radio" name="sky-tabs" checked id="sky-tab1" class="sky-tab-content-1">
+                    <label for="sky-tab1"><span><span><i class="fa fa-bolt"></i>Szczegółowy opis</span></span></label>
+
+                    <input type="radio" name="sky-tabs"  id="sky-tab2" class="sky-tab-content-2">
+                    <label for="sky-tab2"><span><span><i class="fa fa-picture-o"></i>Informacje o terapeucie</span></span></label>
+
+                    <input type="radio" name="sky-tabs" id="sky-tab3" class="sky-tab-content-3">
+                    <label for="sky-tab3"><span><span><i class="fa fa-bolt"></i>Informacje dodatkowe</span></span></label>
+                    <ul>
+                        <li class="sky-tab-content-1">
+                            <div class="typography">
+                                <h4>Szczegółowe informacje</h4><br>
+                                <span style="font-size: 14px;line-height: 25px;">
+                                    {{ product.description | raw }}
+                                </span>
+                            </div>
+                        </li>
+                        <li class="sky-tab-content-2">
+
+                            <div class="typography">
+                                {% for therapist in product.therapist %}
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <h4>{{ therapist.name }}</h4><br>
+                                        </div>    
+                                        <div class="col-xs-3">
+                                            <img src="{{ asset(therapist.picture) }}" alt="{{ therapist.name }}" class="picColor"/>
+                                        </div>    
+
+                                        <div class="col-xs-9">
+                                            
+                                             <span style="font-size: 14px;line-height: 25px;">   
+                                            {{ therapist.bio }}</span>
+                                            <br>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        <li class="sky-tab-content-3">
+                            <div class="typography">
+                                <h4>Informacje dodatkowe</h4><br>
+                                <table class="table table-hover table-responsive table-striped">
+                                    <tr>
+                                        <td>Długość filmu</td>
+                                        <td>
+                                            <span class="btn btn-xs btn-default">{{ product.minutes }} min</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Liczba płyt</td>
+                                        <td>
+                                            <span class="btn btn-xs btn-default">{{ product.numberOfDiscs }}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Napisy</td>
+                                        <td>
+                                            {% for language in product.languages %}
+                                                <span class="btn btn-xs btn-default">{{ language.name }}</span> 
+                                            {% else %}
+                                                <span class="btn btn-xs btn-default">Brak danych</span>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!--/ tabs -->
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div id="pasek_prawy" class="col-lg-3">
+                <center>
+                    <hr style="height: 0px; border-top-color: #fff;"/>
+                    <img src="{{ asset(product.cover)  }}" class="cover_karta item_thumb"/>
+                    <hr style="height: 0px; border-top-color: #fff;"/>
+                    <center>
+                        <h5>Dostępność:</h5>
+                    </center>
+                    <p>Wysyłka w ciągu 24 h.
+                        <i class="hidden item_id">{{ product.id }}</i>
+                    <p/>
+                    <hr style="height: 0px; border-top-color: #fff;"/>
+                    <h5>Napisy:</h5>
+                    <p>
+                        {% for language in product.languages %}
+                            {{ language.name }}, 
+                        {% else %}
+                            Brak danych
+                        {% endfor %}
+                    </p>
+                    <hr style="height: 0px; border-top-color: #fff;"/>
+                    <h5>Wersja indywidualna:<br><strong> {{ product.individualPrice }} zł</strong></h5>
+                    <p>(Licencja do prywatnego użytku.)
+                    <p/>
+                    <hr style="height: 0px; border-top-color: #fff;"/>
+                    <h5>Wersja profesjonalna:<br><strong><span class="item_price"> {{ product.proffesionalPrice }} zł</span></strong> </h5>
+                    <p>(Uprawnia do wykorzystywania podczas szkoleń i oglądania w zepsole.)
+                    <p/>
+                    <hr style="height: 0px; border-top-color: #fff;"/>
+                    <h5>Wybierz wersję: </h5>
+                    <br/>
+                    <select class="item_size">
+                        <option value="ind"> Indywidualna </option>
+                        <option value="pro"> Profesjonalna </option>
+                    </select>
+                    <br /><br/>
+                    <input type="button" class="item_add btn btn-default" value="Dodaj do koszyka"></p></br>
+                </center>
+
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div id="nomargins">
+        <div class="row">
+            <div class="col-lg-9">
+                <div id="myDiv">
+
+                    {% if product.video|length > 10 %}
+
+                        <!--  Playlists -->
+                        <ul id="playlists" style="display:none;">
+                            <li data-source="playlist1" data-playlist-name="MY HTML PLAYLIST" data-thumbnail-path="" 
+                        </li>
+                    </ul>
+                    <!--  HTML playlist -->
+                    <ul id="playlist1" style="display:none;">
+
+                        <li data-thumb-source="content/thumbnails/small-fwd.jpg"
+                            data-video-source="{{ asset(product.video, null, 1) }}"
+                            data-poster-source="../../../bundles/order/images/poster.jpg"
+
+                            data-downloadable="no">
+                        </li>
+                    </ul>
+
+                {% else %}
+
+                    <p><center><br>Fragment filmu wkrótce</center><br></p>
+
+                {% endif %}
+
+            </div>
+        </div>
+        <div id="pasek_prawy" class="col-lg-3">
+            <h5>Zobacz podobne filmy</h5>
+            <hr style="height: 0px; border-top-color: #fff;"/>
+            {% for similar in product.similar %}
+                <h5>{{ similar.name }}</h5>
+                <p><a href="{{ path('frontend.products.display', { id: similar.id }) }}">Zobacz film</a><p/>
+                <hr style="height: 0px; border-top-color: #fff;"/>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<hr/>
+{% endblock %}
+{% block afterContent %}
+    {{ render_common_info() }}<hr/>
+{% endblock %}

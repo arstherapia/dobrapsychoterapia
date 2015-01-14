@@ -1,0 +1,65 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+    {% stylesheets 
+            "@FrontendBundle/Resources/public/css/sevenslider.css"
+            "@FrontendBundle/Resources/public/css/skins/default.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+            "@FrontendBundle/Resources/public/js/jquery.seven.js"
+            "@FrontendBundle/Resources/public/js/jquery.reference.js"
+            "@FrontendBundle/Resources/public/js/order_application.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 col-lg-9"><br>
+        <h3>Płatności i wysyłka</h3><hr/>
+        <p><strong>Płatność</strong><br><br>
+        <p>Możecie Państwo skorzystać dwóch metod płatności: </br></br>   
+            - płatność przelewem bankowym na nasze konto:</br></br>
+            <strong>mbank 67 1140 2004 0000 3202 7522 1039</strong></br></br>
+            - płatność listonoszowi "za pobraniem".<br>
+
+        
+
+        </p><hr/>
+
+        <p><strong>Wysyłka</strong><br><br>
+        <p>Mając na względzie bezpieczeństwo i szybkość dostarczenia do Państwa zamówionych filmów, przesyłki wysyłamy za pomocą usług Poczty Polskiej, każdą przesyłkę wysyłając jako:<br><br>
+            - Paczkę Extra 24 (gwarantowana dostawa na następny dzień) oraz<br><br>
+            - Paczkę 24 ( gwarantowana dostawa w ciągu 48 h ).
+        </p></br></br>
+
+            </p>
+
+        
+    </div>
+    <div id="pasekprawy" class="col-sm-3 hidden-sm hidden-xs hidden-md">
+        <div class="row">
+            <div class="seven_container col-xs-12">
+                <div id="seven_viewport" class="seven_viewport">
+                    <div class="seven_slider">
+                        {% image '@FrontendBundle/Resources/public/images/1.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                        
+                        {% image '@FrontendBundle/Resources/public/images/2.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                    
+                    </div>
+                </div>
+                <a id="left_btn" class="seven_nav">Previous Slide</a>
+                <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+            </div>
+        </div>
+    </div>	
+</div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

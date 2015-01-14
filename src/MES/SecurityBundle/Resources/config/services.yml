@@ -1,0 +1,21 @@
+parameters:
+    mes_user_provider.class:    MES\SecurityBundle\Security\Provider\MESUserProvider
+    mes_user_manager.class:     MES\SecurityBundle\Security\Manager\MESUserManager
+    mes_authenticator.class:    MES\SecurityBundle\Authenticator\MESAuthenticator
+    
+services:
+    mes_user_provider:
+        class: %mes_user_provider.class%
+        calls:
+            - [setClass, ['%mes_user.class%']]
+        arguments: [ '@doctrine.orm.entity_manager' ]
+        
+    mes_user_manager:
+        class: %mes_user_manager.class%
+        calls:
+            - [setClass, ['%mes_user.class%']]
+        arguments: [ '@mes_user_provider', '@doctrine.orm.entity_manager', "@security.encoder_factory" ]
+        
+    mes_authenticator:
+        class: %mes_authenticator.class%
+        arguments: ["@security.encoder_factory"]

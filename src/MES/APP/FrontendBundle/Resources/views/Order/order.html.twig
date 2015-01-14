@@ -1,0 +1,138 @@
+{% extends '::base.html.twig' %}
+{% block pageName %}Edycja <small>zamówienia</small>{% endblock %}
+{% block breadcrumbs %}
+    {{ 
+    render_breadcrumbs([
+        { content: 'Lista zamówień', path: 'orders'},
+        { content: 'Edycja zamówienia' }
+    ]) 
+    }}
+{% endblock %}
+{% block content -%}
+    <div class='well'>
+        {{ form(form) }}
+    </div>
+    <table class="table table-responsive table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Ilość pozycji</th>
+                <th>Data</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a href="{{ path('orders.order', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.surname }}</td>
+                <td>{{ entity.orderProducts|length }}</td>
+                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
+                <td>{{ entity.orderState.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <h4>Pozycje w zamówieniu #{{ entity.id }}</h4>
+    <table class="table-hover table table-responsive table-striped">
+        <tr>
+            <th>Nazwa</th>
+            <th>Ilość</th>
+            <th>Cena jedn.</th>
+            <th>Cena kompl.</th>
+        </tr>
+        {% for product in entity.orderProducts %}
+            <tr>
+                <td><a href="{{ path('frontend.products.display', { id: product.movies.id }) }}">{{ product.movies.name }}</a></td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.productPriceNett }}</td>
+                <td>{{ product.productPriceNett * product.quantity }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>{{ entity.shipping }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <hr/>
+    <h4>Informacje o kliencie</h4>
+    <table class="table-hover table table-responsive table-striped">
+        <tr>
+            <td>Imię</td>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <td>Nazwisko</td>
+            <td>{{ entity.surname }}</td>
+        </tr>
+        <tr>
+            <td>Ulica</td>
+            <td>{{ entity.street }}</td>
+        </tr>
+        <tr>
+            <td>Nr. budynku/mieszkania</td>
+            <td>{{ entity.building }}</td>
+        </tr>
+        <tr>
+            <td>Kod pocztowy</td>
+            <td>{{ entity.postalCode }}</td>
+        </tr>
+        <tr>
+            <td>Miasto</td>
+            <td>{{ entity.town }}</td>
+        </tr>
+        <tr>
+            <td>E-Mail</td>
+            <td>{{ entity.email }}</td>
+        </tr>
+        <tr>
+            <td>Telefon</td>
+            <td>{{ entity.phone }}</td>
+        </tr>
+    </table>
+    {% if entity.company|length > 0 %}
+        <hr/>
+        <h4>Informacje o firmie klienta</h4>
+        <table class="table-hover table table-responsive table-striped">
+            <tr>
+                <td>Nazwa firmy</td>
+                <td>{{ (entity.company.name)?entity.company.name:"" }}</td>
+            </tr>
+            <tr>
+                <td>Nip</td>
+                <td>{{ (entity.company.nip)?entity.company.nip:""  }}</td>
+            </tr>
+            <tr>
+                <td>Ulica</td>
+                <td>{{ (entity.company.street)?entity.company.street:""  }}</td>
+            </tr>
+            <tr>
+                <td>Nr Budynku</td>
+                <td>{{ (entity.company.buildingNumber)?entity.company.buildingNumber:""  }}</td>
+            </tr>
+            <tr>
+                <td>Nr Lokalu</td>
+                <td>{{ (entity.company.apartmentNumber)?entity.company.apartmentNumber:""  }}</td>
+            </tr>
+            <tr>
+                <td>Kod pocztowy</td>
+                <td>{{ (entity.company.postalCode)?entity.company.postalCode:""  }}</td>
+            </tr>
+            <tr>
+                <td>Miasto</td>
+                <td>{{ (entity.company.city)?entity.company.city:""  }}</td>
+            </tr>
+            <tr>
+                <td>Telefon</td>
+                <td>{{ (entity.company.telephone)?entity.company.telephone:""  }}</td>
+            </tr>
+        </table>
+    {% else %}
+        Brak firmy
+    {% endif %}
+    <hr/>
+{% endblock %}

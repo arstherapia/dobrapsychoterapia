@@ -1,0 +1,88 @@
+<div id="footer">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="sky-form">
+                <fieldset>
+                    <section lass="sky-form">
+                        <div class="row">
+                            <h3>Filmy w kategoriach:</h3>
+                            <br/>
+                            <hr/>
+                            <br>
+                            <ul style="list-style-type: none;">
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/1">Pakiety filmowe</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/2">Filmy z napisami</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/3">Terapia uzależnień</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/4">Terapia grupowa</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/5">Terapia Gestalt</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/6">Terapia systemowa</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/7">Terapia integracyjna</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/8">Terapia sztuką</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/9">Terapia rodzinna</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/10">Trauma i PTSD</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/11">Terapia dzieci</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/12">Superwizja</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/13">Terapia par i małżeństw</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/14">Terapia psychodynamiczna</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/15">Terapia hum-egzystencjalna</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/16">Terapia poz-behawioralna</a></h5></li>
+                                <li><h5><a href="http://dobrapsychoterapia.net/kategorie/17">Psychodrama</a></h5></li>
+
+                            </ul>    
+
+                            <!-- <ul style="list-style-type: none;">
+                            {% for catagory in catagories %}
+                            <li><a href="{{ path('frontend.catagories.catagory_products', { id: catagory.id }) }}"><h5>{{ catagory.name }}</h5></a></li>
+                            {% endfor %}
+                        </ul>  -->
+
+                        </div>
+                    </section>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="sky-form">
+                <fieldset>
+                    <section lass="sky-form">
+                        <div class="row">
+                            <h3>Przydatne informacje:</h3>
+                            <br/>
+                            <hr/>
+                            <br>
+                            <ul style="list-style-type: none;">
+                                <li><h5><a href="{{ path('frontend.default.contact') }}">Dane kontaktowe</a></h5></li>
+                                <li><h5><a href="{{ path('frontend.default.regulamin') }}">Regulamin zakupów</a></h5></li>
+                                <li><h5><a href="{{ path('frontend.default.shiping') }}">Sposoby płatności i wysyłka</a></h5></li>
+                                
+                                <li><h5><a href="#">Plan wydawniczy</a></h5></li>
+                                
+                            </ul>
+                        </div>
+                    </section>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            {{ form_start(newsletter, { attr: { class:'sky-form' }, method:'POST'}) }}
+            <fieldset>
+                <section>
+                    <div class="row">
+                        <h3>Nasz Newsletter</h3>
+                        </br>
+                        <hr/>
+                        <p>Informacje o promocjach i nowościach.</p>
+                        <p>Podaj adres e-mail, aby się zapisać.</p>
+                        </br>
+                        {{ form_row(newsletter.email, { label: false, attr: { placeholder: "Adres E-Mail", 'style': 'padding: 6px 12px'} }) }}
+                        <div class="note"><a href="#">Szanujemy Twoją prywatność</a>
+                        </div>
+                        {{ form_row(newsletter.submit, { label: "Zapisz się" }) }}
+
+                    </div>
+                </section>
+            </fieldset>
+            {{ form_end(newsletter) }}
+        </div>
+    </div>
+</div>

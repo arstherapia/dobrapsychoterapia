@@ -1,0 +1,61 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+    {% stylesheets 
+            "@FrontendBundle/Resources/public/css/sevenslider.css"
+            "@FrontendBundle/Resources/public/css/skins/default.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+            "@FrontendBundle/Resources/public/js/jquery.seven.js"
+            "@FrontendBundle/Resources/public/js/jquery.reference.js"
+            "@FrontendBundle/Resources/public/js/order_application.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-sm-9">
+        <br><h3>O nas</h3><hr/>
+        <p>Sklep „Dobra Psychoterapia” prowadzony jest wyłącznie przez psychologów i aktywnych zawodowo psychoterapeutów, co ma na celu zagwarantowanie Państwu odpowiednio wysokiego poziomu merytorycznego.<br><br>
+        Naszym celem jest umożliwienie specjalistom, zajmującym się psychologią, pedagogiką i szeroko rozumianą terapią, dotarcia do bogatej oferty filmów szkoleniowych, stanowiących inspirację i dającą możliwości rozwoju zarówno zawodowego, jak i osobistego.
+
+        </p>
+
+        <p>Jesteśmy wyłącznym dystrybutorem w Polsce filmów wydawanych przez Psychotherapy.Net. Nieustannie pogłębiamy współpracę z Wydawcą oraz tłumaczymy listy dialogowe na język polski, aby treści zawarte w filmach mogły zostać przyswojone przez szerokie grono odbiorców.<br><br>
+        Naszym głębokim przekonaniem jest, że film jako materiał szkoleniowy jest w stanie przekazać bogactwo treści, niemożliwe do przekazania wyłącznie za pomocą słowa pisanego.
+
+        </p>
+
+        <p>Osoby, które nie są zawodowo związane z psychologią, pedagogiką lub terapią, ale są zainteresowane tymi zagadnieniami, z pewnością znajdą coś dla siebie. Wierzymy, że również niektórzy pacjenci/klienci korzystający z naszej pomocy mogą odnieść korzyść terapeutyczną z obejrzenia niektórych z naszych pozycji.<br><br>
+        <strong>W razie problemów ze znalezieniem filmu odpowiadającego Państwa potrzebom, prosimy o zadawanie pytań. Doradzimy w ciągu 24 godzin.</strong></p>
+
+        <p>Zaprasamy serdecznie do przeglądania zasobów naszego sklepu.</p><br><br>
+
+    </div>
+    <div id="pasekprawy" class="col-sm-3 hidden-sm hidden-xs hidden-md">
+        <div class="row">
+            <div class="seven_container col-xs-12">
+                <div id="seven_viewport" class="seven_viewport">
+                    <div class="seven_slider">
+                        {% image '@FrontendBundle/Resources/public/images/1.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                        
+                        {% image '@FrontendBundle/Resources/public/images/2.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                    
+                    </div>
+                </div>
+                <a id="left_btn" class="seven_nav">Previous Slide</a>
+                <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+            </div>
+        </div>
+    </div>		
+</div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

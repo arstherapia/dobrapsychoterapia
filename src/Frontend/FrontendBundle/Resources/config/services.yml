@@ -1,0 +1,6 @@
+services:
+    menu_renderer:
+        class: Frontend\FrontendBundle\Twig\Extension\MenuExtension
+        arguments: ['@security.context', '@twig', '@doctrine.orm.entity_manager', '@form.factory', '@request_stack']
+        tags:
+            - { name: twig.extension }

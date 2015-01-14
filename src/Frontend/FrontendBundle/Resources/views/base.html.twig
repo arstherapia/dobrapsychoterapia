@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="utf-8">
+        {#        {{ sonata_seo_title() }}
+        
+                {{ sonata_seo_metadatas() }}#}
+        {% block meta %}
+            <meta name="description" content="{% block seo_describtion %}{% endblock %}">
+            <meta name="keywords" content="{% block seo_keywords %}{% endblock %}">
+        {% endblock %}
+        <title>{% block title %}{% endblock %} Dobra Psychoterapia.net</title>
+        <!-- Bootstrap -->
+        {% block styles %}
+            {% stylesheets 
+            "@FrontendBundle/Resources/public/css/bootstrap.min.css"
+            "@FrontendBundle/Resources/public/css/font-awesome.css"
+            "@FrontendBundle/Resources/public/css/sky-mega-menu.css"
+            "@FrontendBundle/Resources/public/css/sky-mega-menu-blue.css"
+            "@FrontendBundle/Resources/public/css/sky-tabs.css"
+            "@FrontendBundle/Resources/public/css/sky-tabs-blue.css"
+            "@FrontendBundle/Resources/public/css/sky-forms.css"
+            "@FrontendBundle/Resources/public/css/style.css"
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+            <!--[if lt IE 9]>
+            {% stylesheets 
+                "@FrontendBundle/Resources/public/css/sky-tabs-ie8.css"
+            %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+            {% endstylesheets %}
+            <![endif]-->
+        {% endblock %}
+        <script type="text/javascript">
+            window.heap = window.heap || [], heap.load = function (t, e) {
+                window.heap.appid = t, window.heap.config = e;
+                var a = document.createElement("script");
+                a.type = "text/javascript", a.async = !0, a.src = ("https:" === document.location.protocol ? "https:" : "http:") + "//cdn.heapanalytics.com/js/heap.js";
+                var n = document.getElementsByTagName("script")[0];
+                n.parentNode.insertBefore(a, n);
+                for (var o = function (t) {
+                    return function () {
+                        heap.push([t].concat(Array.prototype.slice.call(arguments, 0)))
+                    }
+                }, p = ["clearEventProperties", "identify", "setEventProperties", "track", "unsetEventProperty"], c = 0; c < p.length; c++)
+                    heap[p[c]] = o(p[c])
+            };
+            heap.load("17984023");
+        </script>
+
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-52861559-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="main-page">
+                    {{ render_header() }}
+                    <div class="container-fluid">
+                        {% for label, flashes in app.session.flashbag.all %}
+                            {% for flash in flashes %}
+                                <div class="alert alert-{{ label }}">
+                                    {{ flash }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% block content %}
+                        {% endblock %}
+                        {% block afterContent %}
+                            {{ render_relases() }}
+                            {{ render_new_things() }}
+                            {{ render_common_info() }}
+                            {{ render_movies_of_the_month() }}
+                            {{ render_masters() }}
+                        {% endblock %}
+                    </div>
+                    {{ render_footer() }}
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var orderUrl = '{{ path('order.default.index', [], true) }}';
+        </script>
+        {% block javascripts %}
+            {% javascripts 
+                "@FrontendBundle/Resources/public/js/jquery.min.js"
+                "@FrontendBundle/Resources/public/js/bootstrap.min.js"
+                "@FrontendBundle/Resources/public/js/simpleCart.js"
+                "@FrontendBundle/Resources/public/js/mixitup.2.1.2.js"
+                "@FrontendBundle/Resources/public/js/application.js"
+            %}
+            <script type="text/javascript" src="{{ asset_url }}" /></script>
+            {% endjavascripts %}
+        <!--[if lt IE 9]>
+        {% javascripts
+            "@FrontendBundle/Resources/public/js/html5shiv.js"
+            "@FrontendBundle/Resources/public/js/respond.js"
+            "@FrontendBundle/Resources/public/js/sky-tabs-ie8.js"
+            "@FrontendBundle/Resources/public/js/jquery.1.9.1.js"
+        %}
+        <script type="text/javascript" src="{{ asset_url }}" /></script>
+        {% endjavascripts %}
+    <![endif]-->
+    {% endblock %}
+
+<a title="Web Analytics" href="http://clicky.com/100801336"><img alt="Web Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100801336); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100801336ns.gif" /></p></noscript>
+
+</body>
+</html>

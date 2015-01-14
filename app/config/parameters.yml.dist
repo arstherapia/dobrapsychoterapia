@@ -1,0 +1,20 @@
+parameters:
+    database_driver:   pdo_mysql
+    database_host:     localhost
+    database_port:     ~
+    database_name:     abstynencja
+    database_user:     root
+    database_password: LppHk9UuUbTy4N
+
+    mailer_transport:  smtp
+    mailer_host:       mietkiewicz.nazwa.pl
+    mailer_user:       sklep@dobrapsychoterapia.net
+    mailer_password:   HobbitoN1!
+
+    locale:            en
+    secret:            jRaGCrJMLhVtEK367nLNQkpc9wH5xnNG5zYhPyUcttfHN8DK6epLqCz9J85R6upZ
+
+    debug_toolbar:          true
+    debug_redirects:        false
+    use_assetic_controller: true
+    mes_user.class: MES\UserBundle\Entity\MesUser

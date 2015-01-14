@@ -1,0 +1,47 @@
+{% extends 'FrontendBundle:User:base.html.twig' %}
+{% block container %}
+    {% if order is defined and order is not null %}
+        <h4>Pozycje w zamówieniu #{{ order.id }}</h4>
+        <table class="table-hover table table-responsive table-striped">
+            <tr>
+                <th>Nazwa</th>
+                <th>Ilość</th>
+                <th>Cena jedn.</th>
+                <th>Cena kompl.</th>
+            </tr>
+            {% for product in order.orderProducts %}
+                <tr>
+                    <td><a href="{{ path('frontend.products.display', { id: product.movies.id }) }}">{{ product.movies.name }}</a></td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.productPriceNett }}</td>
+                    <td>{{ product.productPriceNett * product.quantity }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>{{ order.shipping }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <hr/>
+    {% endif %}
+
+    <h4>Historia Twoich zamówieñ</h4>
+    <table class="table-hover table table-responsive table-striped">
+        <tr>
+            <th>Numer</th>
+            <th>Data</th>
+            <th>Status</th>
+        </tr>
+        {% for orders in app.user.mesUserOrder %}
+            <tr{{ (order is defined and order is not null and order.id == orders.id)?' class="success"':"" }}>
+                <td><a href="{{ path('frontend.user.orders', { orderId: orders.id }) }}">{{ orders.id }}</a></td>
+                <td>{{ orders.dateCreated|date("Y-m-d") }}</td>
+                <td>{{ orders.orderState.name }}</td>
+            </tr>
+        {% else %}
+            <p class="alert alert-warning alert-dismissable">Brak zamówieñ</p>
+        {% endfor %}
+    </table>
+{% endblock %}

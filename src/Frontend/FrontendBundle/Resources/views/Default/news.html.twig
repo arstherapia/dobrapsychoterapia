@@ -1,0 +1,61 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+    {% stylesheets 
+            "@FrontendBundle/Resources/public/css/sevenslider.css"
+            "@FrontendBundle/Resources/public/css/skins/default.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+            "@FrontendBundle/Resources/public/js/jquery.seven.js"
+            "@FrontendBundle/Resources/public/js/jquery.reference.js"
+            "@FrontendBundle/Resources/public/js/order_application.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block content %}
+<div class="row">
+	<div class="col-lg-9"><br>
+		<h4>Aktualności</h4><hr/>
+        <strong>2015-01-04</strong><br><br>
+		<p>Witamy Państwa bardzo serdecznie na naszej nowej stronie.</br></br>
+        Ciekawi jesteśmy Państwa opinii na jej temat. Z naszej strony możemy powiedzieć, że
+        wprowadziliśmy kilka udogodnień, m.in.: <br><br>
+        - galerię Mistrzów Psychoterapii, gdzie umieszczać będziemy najciekawsze biografie i fakty
+        z życia znanych terapeutów;<br>
+        - możliwość przeglądania filmów wg problemów poruszanych w terapii, takich jak np. depresja,
+        stany lękowe, rozwód;<br>
+        - "Film miesiąca": na stałe wprowadziliśmy zwyczaj oferowania Państwo jednego tytułu, co miesiąc innego, w obniżonej cenie;<br>
+        - nowe, ciekawe w naszej opinii, pakiety filmowe w korzystnych cenach.
+
+		   </p><hr/>
+
+
+	</div>
+
+    <div id="pasekprawy" class="col-sm-3 hidden-sm hidden-xs hidden-md">
+        <div class="row">
+            <div class="seven_container col-xs-12">
+                <div id="seven_viewport" class="seven_viewport">
+                    <div class="seven_slider">
+                        {% image '@FrontendBundle/Resources/public/images/1.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                        
+                        {% image '@FrontendBundle/Resources/public/images/2.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                    
+                    </div>
+                </div>
+                <a id="left_btn" class="seven_nav">Previous Slide</a>
+                <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+            </div>
+        </div>
+    </div>		
+</div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

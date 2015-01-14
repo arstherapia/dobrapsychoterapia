@@ -1,0 +1,136 @@
+<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+    <tbody>
+        <tr>
+            <td>
+                <table width="604" cellspacing="0" cellpadding="0" border="0" align="center">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <table width="604" cellspacing="0" cellpadding="0" border="0" style="color:#484848;border:5px solid #efefef">
+                                    <tbody>
+                                        <tr>
+                                            <td valign="top" style="font-family:'Segoe UI',Arial,sans-serif;font-size:12px;padding:10px">
+                                                <h1 style="margin-top:0;font-size:18px;color:#231f20;border-bottom:1px solid #e3e3e3;padding-bottom:6px;text-transform:uppercase">Status zamówienia: {{ order.orderState.name }}</h1>
+                                                <p>Witamy serdecznie,<br>
+                                                    Bardzo dziękujemy za dokonanie zakupu w sklepie <a target="_blank" style="color:#f15a25;text-decoration:none" title="Dobra Psychoterapia" href="http://dobrapsychoterapia.net/">Dobra Psychoterapia</a>.
+                                                </p>
+                                                <p>W dniu 04/12/2014 otrzymaliśmy nowe zamówienie nr <strong style="color:#231f20">{{ order.id }}</strong></p>
+                                                <p style="margin-top:20px"><strong style="color:#231f20">Oto szczegóły zamówienia:</strong></p>
+                                                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                                                    <thead>
+                                                        <tr style="color:#787372;background:#ebebeb;font-size:11px;line-height:26px;text-align:left">
+                                                            <th style="border-bottom:1px solid #e1e1e1;border-right:1px solid #fff;padding-left:10px;font-weight:normal">Nazwa produktu</th>
+                                                            <th style="border-bottom:1px solid #e1e1e1;border-right:1px solid #fff;padding-left:10px;font-weight:normal">Kod EAN</th>
+                                                            <th style="border-bottom:1px solid #e1e1e1;border-right:1px solid #fff;padding-left:10px;font-weight:normal;width:60px">Cena szt</th>
+                                                            <th style="border-bottom:1px solid #e1e1e1;border-right:1px solid #fff;padding-left:10px;font-weight:normal">Ilość</th>
+                                                            <th style="border-bottom:1px solid #e1e1e1;border-right:1px solid #fff;padding-left:10px;font-weight:normal;width:85px">Wartość</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="color:#231f20">
+                                                        {% set suma = 0 %}
+                                                        {% for item in order.orderProducts %}
+                                                            <tr style="font-size:11px;line-height:26px;text-align:left">
+                                                                <td>{{ item.movies.name }}
+                                                                </td>
+                                                                <td></td>
+                                                                <td> {{ item.productPriceNett }} PLN</td>
+                                                                <td> {{ item.quantity }} szt</td>
+                                                                <td> {{ item.quantity * item.productPriceNett }} PLN</td>
+                                                                {% set suma = suma + ( item.quantity * item.productPriceNett ) %}
+                                                            {% endfor %}
+                                                        </tr>
+                                                    </tbody>
+                                                    <tfoot style="color:#231f20">
+                                                        <tr style="background:#e2e2e2;line-height:30px">
+                                                            <td style="background:#e2e2e2;color:#231f20;font-weight:bold;font-size:11px;padding-right:10px;text-align:right" colspan="4">Suma</td>
+                                                            <td style="background:#e2e2e2;color:#231f20;font-weight:bold;font-size:11px;padding-left:10px"> {{ suma }} PLN</td>
+                                                        </tr>
+                                                        <tr style="line-height:30px">
+                                                            <td style="background:#e2e2e2;color:#231f20;font-weight:bold;font-size:11px;padding-right:10px;text-align:right" colspan="4">{{ order.shipping }}</td>
+                                                            <td style="background:#e2e2e2;color:#231f20;font-weight:bold;font-size:11px;padding-left:10px"> 
+                                                                {% if suma > 200 %} 
+                                                                    0.00
+                                                                {% else %} 
+                                                                    {{ (order.shipping == 'Poczta Polska Paczka24 / Extra24 za pobraniem')?16:20 }}  
+                                                                    {% set suma = suma+((order.shipping == 'Poczta Polska Paczka24 / Extra24 za pobraniem')?16:20) %} 
+                                                                {% endif %}PLN</td>
+                                                        </tr>
+                                                        <tr style="line-height:30px">
+                                                            <td style="background:#e2e2e2;color:#231f20;font-weight:bold;font-size:11px;padding-right:10px;text-align:right" colspan="4">Suma</td>
+                                                            <td style="background:#e2e2e2;color:#231f20;font-weight:bold;font-size:11px;padding-left:10px"> {{ suma }} PLN</td>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                                <h2 style="font-size:14px;color:#231f20;border-bottom:1px solid #e3e3e3;padding-bottom:4px;margin-top:30px;text-transform:uppercase">Sposób płatności</h2>
+                                                {% if order.shipping == 'Poczta Polska Paczka24 / Extra24 za pobraniem' %}
+                                                    <p>Płatne przy odbiorze</p>
+                                                    <div>
+                                                        <br>
+                                                    </div>
+                                                {% else %}
+                                                    <p>Przelew bankowy</p>
+                                                    <div>
+                                                        <br>
+                                                    </div>
+                                                    <p>Numer konta do wpłaty: mBank 67 1140 2004 0000 3202 7522 1039</p>
+                                                {% endif %}
+
+                                                <h2 style="font-size:14px;color:#231f20;border-bottom:1px solid #e3e3e3;padding-bottom:4px;margin-top:30px;text-transform:uppercase">Dostawa</h2>
+                                                <p>{{ order.shipping }}</p>
+                                                <h2 style="font-size:14px;color:#231f20;border-bottom:1px solid #e3e3e3;padding-bottom:4px;margin-top:30px;text-transform:uppercase">Dane klienta:</h2>
+                                                <p>
+                                                    Imię:	{{ order.name }} 
+                                                    <br>Nazwisko: {{ order.surname }} 
+                                                    <br>Miasto: {{ order.town }} 
+                                                    <br>Kod pocztowy: {{ order.postalCode }} 
+                                                    <br>Ulica: {{ order.street }} 
+                                                    <br>Nr budynku/lokalu: {{ order.building }} 
+                                                    <br>Nr. telefonu: {{ order.phone }}
+                                                    <br>
+                                                </p>
+                                                <h2 style="font-size:14px;color:#231f20;border-bottom:1px solid #e3e3e3;padding-bottom:4px;margin-top:30px;text-transform:uppercase">Adres dostawy:</h2>
+                                                <p>
+                                                    Imię:	{{ order.name }} 
+                                                    <br>Nazwisko: {{ order.surname }} 
+                                                    <br>Miasto: {{ order.town }} 
+                                                    <br>Kod pocztowy: {{ order.postalCode }} 
+                                                    <br>Ulica: {{ order.street }} 
+                                                    <br>Nr budynku/lokalu: {{ order.building }} 
+                                                    <br>Nr. telefonu: {{ order.phone }}
+                                                    <br>
+                                                </p>
+                                                <p>Pozdrawiamy,<br>Dobra Psychoterapia</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table width="604" cellspacing="0" cellpadding="0" border="0" style="font-family:'Segoe UI',Arial,sans-serif;font-size:11px;color:#919191">
+                                    <tbody>
+                                        <tr>
+                                            <td align="left">
+                                                <p style="margin:11px 0">
+                                                    <a target="_blank" style="color:#484848;text-decoration:none" title="Regulamin" href="http://dobrapsychoterapia.net/regulamin">Regulamin</a> &nbsp; | &nbsp;
+                                                    <a target="_blank" style="color:#484848;text-decoration:none" title="Zwroty" href="http://dobrapsychoterapia.net/kontakt">Kontakt</a> &nbsp; | &nbsp;
+                                                    <a target="_blank" style="color:#484848;text-decoration:none" title="Reklamacje" href="http://dobrapsychoterapia.net/aktualnosci">Aktualności</a> &nbsp; | &nbsp;
+                                                    <a target="_blank" style="color:#484848;text-decoration:none" title="FAQ" href="http://dobrapsychoterapia.net/zamowienia">Status zamówienia</a>
+                                                </p>
+                                            </td>
+                                            <td width="30%" align="right">
+                                                <p style="margin:11px 0">&copy; 2012 Dobra Psychoterapia</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center">
+                                                <p><strong>Dobra Psychoterapia</strong><br><a target="_blank" href="http://www.dobrapsychoterapia.net">www.dobrapsychoterapia.net</a></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

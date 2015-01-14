@@ -1,0 +1,23 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block content %}	
+    <div class="section_header">
+        <div class="row"><div class="col-sm-12">
+                <br>
+                <h3>Zapraszamy do przeglądania filmów wg kategorii:</h3>
+                <hr>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="row">	
+        {% for catagory in catagories %}
+            <div class="col-md-2 text-center kategorie">
+                <p>
+                    <strong class="">{{ catagory.name }}</strong>
+                </p>
+                <a class="btn btn-default btn-sm" href="{{ path('frontend.catagories.catagory_products', { id: catagory.id }) }}">Przeglądaj</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

@@ -1,0 +1,25 @@
+parameters:
+    _upload.file_type.image.class:      "%_upload.namespace%FileTypes\ImageFileType"  
+    _upload.file_type.product_image.class: "%_upload.namespace%FileTypes\\ProductImageFileType" 
+    _upload.file_type.therapist_image.class: "%_upload.namespace%FileTypes\\ProductImageFileType" 
+    _upload.file_type.movie.class: "%_upload.namespace%FileTypes\\MovieFileType" 
+services:
+    upload.file_type.image:
+        class:        "%_upload.file_type.image.class%"
+        tags:
+            - { name: "upload.file_type", alias: "image" }
+     
+    upload.file_type.product_image:
+        class:        "%_upload.file_type.product_image.class%"
+        tags:
+            - { name: "upload.file_type", alias: "product_image" }
+            
+    upload.file_type.therapist_image:
+        class:        "%_upload.file_type.therapist_image.class%"
+        tags:
+            - { name: "upload.file_type", alias: "therapist_image" } 
+            
+    upload.file_type.product_movie:
+        class:        "%_upload.file_type.movie.class%"
+        tags:
+            - { name: "upload.file_type", alias: "product_movie" } 

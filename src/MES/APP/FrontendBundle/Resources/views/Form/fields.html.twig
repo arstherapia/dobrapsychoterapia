@@ -1,0 +1,168 @@
+{% block image_upload_widget %}
+    {% spaceless %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                file("{{ id }}");
+            });
+        </script>
+        <div id="fileupload-{{ id }}" class="fileupload">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="btn btn-gw fileinput-button">
+                                <span>Przeglądaj</span>
+
+                                <input class="upload-input"
+                                       type="file"
+                                       data-url="{{ oneup_uploader_endpoint(upload_endpoint) }}" 
+                                       data-endpoint="{{ upload_endpoint }}" />
+                            </span>
+                        </span>
+
+                        <input type="text" readonly="readonly" class="form-control file-name" placeholder="wybierz plik z dysku" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div class="progress" style="display: none">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+
+                    <div class="hidden">
+                        <input type="text" name="{{ full_name }}[path]" class="file-path"
+                               {% if data.path is defined and data.path %}value="{{ data.path }}"{% endif %} />
+                    </div>
+
+                    <div style="max-width: 100px">
+                        {% if value.path is defined and value.path %}
+                            <img src="{{ value.path }}" style="max-width: 100%;" class="preview-image" />
+                        {% else %}
+                            <img style="max-width: 100%;" class="preview-image hidden" />
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="errors">
+                <ul class="help-block">
+                    <li class="error-whitelist hidden">Wgrano niepoprawny typ pliku.</li>
+                    <li class="error-maxsize hidden">Wgrany plik jest zbyt duży.</li>
+                    <li class="error-image_height_max hidden">Wgrany obrazek jest za wysoki.</li>
+                    <li class="error-image_width_max hidden">Wgrany obrazek jest za szeroki.</li>
+                    <li class="error-image_height_min hidden">Wgrany obrazek jest za niski.</li>
+                    <li class="error-image_width_min hidden">Wgrany obrazek jest za wąski.</li>
+                </ul>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+{% block document_upload_widget %}
+    {% spaceless %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                file("{{ id }}");
+            });
+        </script>
+        <div id="fileupload-{{ id }}" class="fileupload">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="btn btn-gw fileinput-button">
+                                <span>Przeglądaj</span>
+
+                                <input class="upload-input"
+                                       type="file"
+                                       data-url="{{ oneup_uploader_endpoint(upload_endpoint) }}" 
+                                       data-endpoint="{{ upload_endpoint }}" />
+                            </span>
+                        </span>
+
+                        <input type="text" readonly="readonly" class="form-control file-name" placeholder="wybierz plik z dysku" />
+                    </div>
+
+                    <div class="progress" style="display: none">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <div class="hidden">
+                        {% set replace = "[path]" %}
+                        {% set to = "" %}
+                        <input type="hidden" name="{{ full_name|replace({ (replace): to }) }}[name]" class="file-name" />
+                    </div>
+                    <div class="hidden">
+                        <input type="text" name="{{ full_name }}[path]" class="file-path"
+                               {% if data.path is defined and data.path %}value="{{ data.path }}"{% endif %} />
+                    </div>
+                </div>
+            </div>
+
+            <div class="errors">
+                <ul class="help-block">
+                    <li class="error-extension hidden">Wgrano niepoprawny typ pliku.</li>
+                </ul>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+{% block profile_file_upload_widget %}
+    {% spaceless %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                file("{{ id }}");
+            });
+        </script>
+
+        <div id="fileupload-{{ id }}" class="fileupload">
+            <span class="btn btn-success fileinput-button"{% if data is not empty %} style="display: none"{% endif %}>
+                <i class="glyphicon glyphicon-plus"></i>
+                <span>Wgraj plik</span>
+
+                <input class="upload-input"
+                       type="file"
+                       data-url="{{ oneup_uploader_endpoint(upload_endpoint) }}" 
+                       data-endpoint="{{ upload_endpoint }}" />
+            </span>
+
+            {% if files_choice|length > 0 %}
+                <span class="files-choice"{% if data is not empty %} style="display: none"{% endif %}>
+                    lub wybierz jeden ze zdefiniowanych:
+                    <select>
+                        <option value="">-- wybierz --</option>
+                        {% for file in files_choice %}
+                            <option value="{{ file.id }}">{{ file.name }}</option>
+                        {% endfor %}
+                    </select>
+                </span>
+            {% endif %}
+
+            {# select containing file entities ids #}
+            <select class="" style="display: none" {{ block('widget_attributes') }}>
+                {% if data is not empty %}
+                    {% if multiple %}
+                        {% for entity in data %}
+                            <option value="{{ entity.id }}" selected>{{ entity.name }}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="{{ data.id }}" selected>{{ data.name }}</option>
+                    {% endif %}
+                {% endif %}
+            </select>
+
+            <div class="progress" style="display: none">
+                <div class="progress-bar progress-bar-success"></div>
+            </div>
+
+            {# files labels container #}
+            <div class="files"></div>
+
+            <div class="errors">
+                <ul class="help-block">
+                    <li class="error-whitelist hidden">Wgrano niepoprawny typ pliku.</li>
+                    <li class="error-maxsize hidden">Wgrany plik jest zbyt duży.</li>
+                </ul>
+            </div>
+        </div>
+    {% endspaceless %}
+{% endblock %}

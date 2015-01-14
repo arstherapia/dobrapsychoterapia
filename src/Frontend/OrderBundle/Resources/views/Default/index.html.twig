@@ -1,0 +1,91 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block title %}Twój koszyk - {% endblock %}
+{% block seo_describtion %}{% endblock %}
+{% block seo_keywords %}Koszyk,zamowienie{% endblock %}
+{% block content %}	
+    {{ form_start(form.shiping, {method:'POST', 'style': 'horizontal', 'label_col': 3, 'widget_col': 9 }) }}
+    <hr/>
+    <header>Koszyk</header>
+    <hr/>
+    <div class="simpleCart_items"></div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Łącznie</th>
+                <th>Koszty przesyłki</th>
+                <th>Do zapłaty</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><div class="simpleCart_total"></div></td>
+                <td><div class="simpleCart_shipping"></div></td>
+                <td><div class="simpleCart_grandTotal"></div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Właściwy formularz -->
+    <hr/>
+    <header>Formularz zamówienia</header>
+    <hr/>
+    <fieldset>				
+        <div class="row">
+            <div class="col-sm-6">
+                {{ form_row(form.shiping.name) }}
+                {{ form_row(form.shiping.surname) }}
+                {{ form_row(form.shiping.street) }}
+                {{ form_row(form.shiping.buildingNumber) }}
+                {{ form_row(form.email) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.shiping.apartmentNumber) }}
+                {{ form_row(form.shiping.postalCode) }}
+                {{ form_row(form.shiping.city) }}
+                {{ form_row(form.shiping.telephone) }}
+            </div>
+        </div>
+    </fieldset>
+    <hr/>
+    <header>Wysyłka (powyżej 200zł jest darmowa)</header>
+    <hr/>
+    <fieldset>				
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="shiping_type" class="control-label col-lg-3 required">Typ i koszt wysyłki</label>
+                <div class="col-lg-9">
+                    <input type="radio" name="shiping_type" value="16" checked> Poczta Polska Paczka24 / Extra24 przelew - 16zł<br/>
+                    <input type="radio" name="shiping_type" value="20"> Poczta Polska Paczka24 / Extra24 za pobraniem - 20zł
+                </div>
+            </div>
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </fieldset>
+    <hr/>
+    <header>Dane firmy (opcjonane)</header>
+    <hr/>
+    <fieldset>					
+        <div class="row">
+            <div class="col-sm-6">
+                {{ form_row(form.company.name) }}
+                {{ form_row(form.company.nip) }}
+                {{ form_row(form.company.street) }}
+                {{ form_row(form.company.buildingNumber) }}
+                
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.company.apartmentNumber) }}
+                {{ form_row(form.company.postalCode) }}
+                {{ form_row(form.company.city) }}
+                {{ form_row(form.company.telephone) }}
+                
+            </div>
+        </div>
+        <div class="text-right">
+            {{ form_widget(form.submit) }}
+        </div>
+    </fieldset>
+    {{ form_end(form) }}
+{% endblock %}
+{% block afterContent %}{% endblock %}

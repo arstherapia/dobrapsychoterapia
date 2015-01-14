@@ -1,0 +1,18 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">$(document).ready(function(){simpleCart.empty();});</script>
+{% endblock %}
+{% block content %}	
+
+    <div id="frmsuccess">
+        <h4>Dziękujemy za złożenie zamówienia.</h4><br/>
+        {% image '@FrontendBundle/Resources/public/images/thankyou.jpg' %}
+        <img src="{{ asset_url }}" alt="..."  class="bannermainpage">
+        {% endimage %}<br/>
+        <h4>Państwa zamówienie zostanie wysłane w ciągu 2 dni roboczych.</h4>
+
+    </div>
+
+{% endblock %}
+{% block afterContent %}{% endblock %}

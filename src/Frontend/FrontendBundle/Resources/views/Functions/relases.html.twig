@@ -1,0 +1,29 @@
+
+<div class="section_header">
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Premiery z polskimi napisami</h3>
+            <hr>
+            <br>
+        </div>
+    </div>
+</div>
+<div class="row">
+    {% for movie in  relases.movies %}
+        <center>
+            <div class="col-sm-2">        
+                <img src="{{ asset(movie.cover) }}"  style="width: 100%" class="picColor" alt="..."/>            
+            </div>
+        </center>
+    {% endfor %}
+</div>
+<br>
+<div class="row">
+    {% for movie in  relases.movies %}
+        <center>
+            <div class="col-sm-2">
+                <a href="{{ path('frontend.products.display', { id: movie.id }) }}" class="btn btn-default">Zobacz film</a>
+            </div>
+        </center>
+    {% endfor %}
+</div>

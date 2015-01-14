@@ -1,0 +1,78 @@
+{% extends '::base.html.twig' %}
+{% block pageName %}Lista <small>filmów</small>{% endblock %}
+{% block breadcrumbs %}
+    {{ 
+    render_breadcrumbs([
+        { content: 'Lista filmów', path: 'mes_customer'},
+    ]) 
+    }}
+{% endblock %}
+{% block content -%}
+    <div class="count">
+        <h4>
+            Filmów ogólnie: {{ entities.getTotalItemCount }}
+        </h4>
+    </div>
+    {{ knp_pagination_render(entities) }}
+    <table class="table-responsive table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Cover</th>
+                <th>Proffesionalprice</th>
+                <th>Individualprice</th>
+                <th>Therapists</th>
+                <th>Subtitles</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td><a href="{{ path('filmy_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                    <td>{{ entity.name }}</td>
+                    <td><img src="{{ asset(entity.cover) }}" alt="cover"/></td>
+                    <td>{{ entity.proffesionalPrice }}</td>
+                    <td>{{ entity.individualPrice }}</td>
+                    <td>
+                        {% for therapist in entity.therapist %}
+                            <span class="btn btn-xs btn-primary">{{ therapist.name }}</span>
+                            {% else %}
+                                <span class="btn btn-xs btn-primary">{{ 'none' }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for subtitle in entity.languages %}
+                            <span class="btn btn-xs btn-primary">{{ subtitle.name }}</span>
+                            {% else %}
+                                <span class="btn btn-xs btn-primary">{{ '-' }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="{{ path('filmy_show', { 'id': entity.id }) }}">Podgląd</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('filmy_edit', { 'id': entity.id }) }}">Edycja</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(entities) }}
+    </div>
+    <ul style="list-style-type: none;">
+        <li>
+            <a class="btn btn-default" href="{{ path('filmy_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+{% endblock %}

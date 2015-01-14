@@ -1,0 +1,72 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block styles %}
+    {{ parent() }}
+    {% stylesheets 
+            "@FrontendBundle/Resources/public/css/sevenslider.css"
+            "@FrontendBundle/Resources/public/css/skins/default.css"
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts 
+            "@FrontendBundle/Resources/public/js/jquery.seven.js"
+            "@FrontendBundle/Resources/public/js/jquery.reference.js"
+            "@FrontendBundle/Resources/public/js/order_application.js"
+    %}
+    <script type="text/javascript" src="{{ asset_url }}" /></script>
+    {% endjavascripts %}
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 col-lg-9"><br>
+        <h3>Jak złożyć zamówienie?</h3><hr/>
+        <p><strong>1. Składanie zamówienia poprzez koszyk:</strong><br><br>
+            Aby zakupić wybrane przez siebie filmy, należy dodać je do koszyka, używając 
+            do tego przycisku „dodaj do koszyka”, znajdującego się przy opisie wszystkich produktów.
+            Następnie, kierując się podpowiedziami wyświetlanymi na stronie, należy wybrać podać niezbędne dane adresowe oraz wybrać sposób, w jaki mamy wysłać Państwa zamówienie.</p>
+        <p><strong>2. Składanie zamówienia za pomocą poczty e-mail:</strong><br><br>
+            Jeśli z jakiś powodów nie mogą lub nie chcą Państwo skorzystać z opcji zamówienia za pomocą koszyka, 
+            prosimy o wysłanie do nas wiadomości mailowej na adres <strong>sklep@dobrapsychoterapia.net</strong>. <br/><br/>
+            Proszę pamiętać, aby w treści wiadomości znalazły się następujące dane:<br><br>
+            1.	tytuły filmów, które chcą Państwo otrzymać<br/>
+            2.	ceny poszczególnych pozycji<br/>
+            3.	określenie sposobu wysyłki Państwa zamówienia<br/>
+            4.	imię i nazwisko osoby zamawiającej, wraz z adresem wysyłki.</p>
+        <p><strong>3. Składanie zamówienia przez telefon:</strong><br><br>
+            Aby złożyć zamówienie przez telefon, prosimy o kontakt pod numerem <strong>0-515-972-624</strong> w godzinach 9:00 do 16:00. 
+            Jeśli nie uda się Państwu dodzwonić na podany numer, proszę zostawić informację lub wysłać wiadomość SMS. 
+            Skontaktujemy się Państwem najszybciej, jak to będzie możliwe.</p>
+        <p><strong>4. Składanie zamówienia za pomocą poczty tradycyjnej:</strong><br/><br>
+            Mogą Państwo również wysłać do nas list tradycyjny z zamówieniem na adres:<br/><br/>
+            Sklep Dobra Psychoterapia<br/>
+            Beniowskiego 66/8<br/>
+            80-382 Gdańsk<br/><br/>
+            Proszę pamiętać, aby w treści wiadomości znalazły się następujące dane:<br><br>
+            1.	tytuły filmów, które chcą Państwo otrzymać<br/>
+            2.	ceny poszczególnych pozycji<br/>
+            3.	imię i nazwisko osoby zamawiającej, wraz z adresem wysyłki.
+        </p>
+    </div>
+    <div id="pasekprawy" class="col-sm-3 hidden-sm hidden-xs hidden-md">
+        <div class="row">
+            <div class="seven_container col-xs-12">
+                <div id="seven_viewport" class="seven_viewport">
+                    <div class="seven_slider">
+                        {% image '@FrontendBundle/Resources/public/images/1.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                        
+                        {% image '@FrontendBundle/Resources/public/images/2.jpg' %}
+                        <div class="seven_slide" image-src="{{ asset_url }}"></div>
+                        {% endimage %}                    
+                    </div>
+                </div>
+                <a id="left_btn" class="seven_nav">Previous Slide</a>
+                <a id="right_btn" class="seven_nav right_btn">Next Slide</a>
+            </div>
+        </div>
+    </div>	
+</div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

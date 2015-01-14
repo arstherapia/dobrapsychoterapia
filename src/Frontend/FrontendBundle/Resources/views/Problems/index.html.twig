@@ -1,0 +1,24 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block content %}	
+    <div class="section_header">
+        <div class="row"><div class="col-sm-12">
+                <br>
+                <h4>Zapraszamy do przeglądania filmów wg problemu:</h4>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <center>
+            {% for problem in problems %}
+                <div class="col-md-2 text-center kategorie">
+                    <p>
+                        <strong class="">{{ problem.name }}</strong>
+                    </p>
+                    <a class="btn btn-default btn-sm" href="{{ path('frontend.problem.problem_products', { id: problem.id }) }}">Przeglądaj</a>
+                </div>
+            {% endfor %}
+        </center>
+    </div>
+{% endblock %}
+{% block afterContent %}{% endblock %}

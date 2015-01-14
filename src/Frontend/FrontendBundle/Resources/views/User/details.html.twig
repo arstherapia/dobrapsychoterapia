@@ -1,0 +1,10 @@
+{% extends 'FrontendBundle:User:base.html.twig' %}
+{% block container %}
+    Dane Profilowe:
+    {{ form(formDetails, {method:'POST', action:path('frontend.user.details'), 'style': 'horizontal', 'label_col': 3, 'widget_col': 9 }) }}
+    <hr/>
+    
+    Dane Firmy (nie wymagane):
+    {{ form(formCompany, {method:'POST', action:path('frontend.user.details'), 'style': 'horizontal', 'label_col': 3, 'widget_col': 9 }) }}
+    <hr/>
+{% endblock %}

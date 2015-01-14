@@ -1,0 +1,20 @@
+parameters:
+    mes_user_create.class: MES\UserBundle\Command\CreateUserCommand
+    mes_user_promote.class: MES\UserBundle\Command\PromoteUserCommand
+services:
+    mes_user_create:
+        class: %mes_user_create.class%
+        calls:
+            - [setUserManager, [@mes_user_manager]]
+            - [setUserProvider, [@mes_user_provider]]
+        tags:
+            -  { name: console.command }
+            
+    mes_user_promote:
+        class: %mes_user_promote.class%
+        calls:
+            - [setUserManager, [@mes_user_manager]]
+            - [setUserProvider, [@mes_user_provider]]
+            - [setEntityManager, [@doctrine.orm.entity_manager]]
+        tags:
+            -  { name: console.command }

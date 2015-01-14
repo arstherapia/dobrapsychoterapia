@@ -1,0 +1,55 @@
+{% extends 'FrontendBundle::base.html.twig' %}
+{% block content %}	
+    <div class="section_header">
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <h3><strong>{{ catagory.name }}</strong>:</h3>
+                <hr>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="row">	
+        {% for product in catagory.movies %}
+            <div class="col-sm-6">
+                <div class="kategorie">
+                    <div class="row text-center">
+                        {% if product.cover %}
+                            <div class="col-sm-4 hidden-xs">
+                                <img src="{{ asset(product.cover)  }}" alt="cover" style="width:100%" class="picColor"/> 
+                            </div>	
+                            <div class="col-sm-8 col-xs-12">
+                            {% else %}
+                                <div class="col-sm-12">
+                                {% endif %}
+
+                                <h5>
+                                    <strong>{{ product.name }}</strong>
+                                </h5>
+                                </br>
+                                <strong>
+                                    {% for therapist in product.therapist %}
+                                        {{ therapist.name ~ ', ' }}
+                                    {% else %}
+                                        Brak terapeutów
+                                    {% endfor %}
+                                </strong>
+                                <br/>
+                                <br/>
+                                {{ product.descriptionShort|slice(0, 200) ~ ((product.descriptionShort|length > 200)?'...':'') }}
+                                <br/><br/>
+                                <a class="btn btn-default btn-block" href="{{ path('frontend.products.display', { id: product.id }) }}">Zobacz opis i fragment filmu</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if loop.index % 2 == 0 %}
+                </div>
+                <div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block afterContent %}{% endblock %}
